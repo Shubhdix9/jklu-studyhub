@@ -1,0 +1,1321 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JKLU StudyHub</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #000000;
+      min-height: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid #000000;
+      padding: 20px 0;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      font-size: 32px;
+    }
+
+    .logo-text h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .logo-text p {
+      margin: 0;
+      font-size: 12px;
+      color: #666666;
+      font-weight: 400;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .about-btn {
+      padding: 10px 20px;
+      background: #000000;
+      color: #ffffff;
+      border: 2px solid #000000;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .about-btn:hover {
+      background: #333333;
+      border-color: #333333;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: #ffffff;
+      position: relative;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: none;
+      pointer-events: none;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0 0 20px 0;
+      color: #000000;
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: #666666;
+      margin: 0 0 40px 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .exam-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .exam-btn {
+      padding: 15px 35px;
+      background: #ffffff;
+      color: #000000;
+      border: 2px solid #000000;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .exam-btn:hover {
+      background: #000000;
+      color: #ffffff;
+      border-color: #000000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .search-bar {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 16px 50px 16px 20px;
+      border: 2px solid #000000;
+      border-radius: 12px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: #000000;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+    }
+
+    /* Subjects Grid */
+    .subjects-section {
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 50px 0;
+      text-align: center;
+      color: #000000;
+    }
+
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .subject-card {
+      background: #ffffff;
+      border: 2px solid #000000;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .subject-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #000000;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .subject-card:hover {
+      border-color: #000000;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      transform: translateY(-6px);
+    }
+
+    .subject-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .subject-icon {
+      font-size: 52px;
+      margin-bottom: 20px;
+      filter: grayscale(0.3);
+      transition: filter 0.3s ease;
+    }
+
+    .subject-card:hover .subject-icon {
+      filter: grayscale(0);
+    }
+
+    .subject-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #000000;
+      margin: 0;
+    }
+
+    /* Subject Dashboard */
+    .dashboard {
+      display: none;
+      padding: 40px 20px;
+    }
+
+    .dashboard.active {
+      display: block;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .back-btn {
+      padding: 10px 20px;
+      background: #ffffff;
+      color: #000000;
+      border: 2px solid #000000;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn:hover {
+      background: #f5f5f5;
+      border-color: #000000;
+      transform: translateX(-2px);
+    }
+
+    .filters {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 8px;
+      background: #ffffff;
+      padding: 4px;
+      border-radius: 10px;
+      border: 2px solid #000000;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      background: transparent;
+      color: #666666;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      background: #f5f5f5;
+      color: #000000;
+    }
+
+    .filter-btn.active {
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .questions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .question-card {
+      background: #ffffff;
+      border: 2px solid #000000;
+      border-radius: 12px;
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .question-card:hover {
+      border-color: #000000;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .question-header {
+      font-size: 16px;
+      font-weight: 600;
+      color: #000000;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .question-details {
+      display: none;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .question-details.active {
+      display: block;
+    }
+
+    .question-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0 0 24px 0;
+      line-height: 1.4;
+    }
+
+    .answer-section h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+      margin: 0 0 12px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .answer-text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #475569;
+      margin: 0 0 28px 0;
+      white-space: pre-line;
+    }
+
+    .video-section {
+      background: #f8fafc;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .video-section h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+      margin: 0 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .video-container {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .video-placeholder {
+      color: #ffffff;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .video-placeholder .play-icon {
+      font-size: 52px;
+      margin-bottom: 16px;
+      opacity: 0.9;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    .video-placeholder .video-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .video-placeholder .video-duration {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .video-info {
+      margin-top: 12px;
+      padding: 12px;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .video-info .video-id {
+      font-size: 12px;
+      color: #64748b;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e293b;
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    footer p {
+      margin: 8px 0;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    footer p strong {
+      color: #ffffff;
+    }
+
+    /* About Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90%;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      padding: 30px 30px 20px 30px;
+      border-bottom: 1px solid #f5f5f5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #000000;
+      margin: 0;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #666666;
+      padding: 5px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: #f5f5f5;
+      color: #000000;
+    }
+
+    .modal-body {
+      padding: 30px;
+    }
+
+    .about-section {
+      margin-bottom: 40px;
+    }
+
+    .about-section h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000000;
+      margin: 0 0 15px 0;
+    }
+
+    .about-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333333;
+      margin: 0 0 15px 0;
+    }
+
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 20px 0;
+    }
+
+    .founder-card {
+      text-align: center;
+      padding: 20px;
+      border: 2px solid #f5f5f5;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .founder-card:hover {
+      border-color: #000000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .founder-avatar {
+      width: 80px;
+      height: 80px;
+      background: #000000;
+      border-radius: 50%;
+      margin: 0 auto 15px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #ffffff;
+    }
+
+    .founder-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #000000;
+      margin: 0 0 5px 0;
+    }
+
+    .founder-role {
+      font-size: 14px;
+      color: #666666;
+      margin: 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      font-size: 20px;
+      margin-top: 2px;
+    }
+
+    .feature-text {
+      font-size: 15px;
+      color: #333333;
+      margin: 0;
+    }
+
+    .future-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .future-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      font-size: 15px;
+      color: #333333;
+    }
+
+    .future-list li::before {
+      content: "🚀";
+      font-size: 16px;
+    }
+
+    .vision-quote {
+      background: #f5f5f5;
+      padding: 25px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 20px 0;
+      border-left: 4px solid #000000;
+    }
+
+    .vision-quote p {
+      font-size: 18px;
+      font-weight: 500;
+      color: #000000;
+      margin: 0;
+      font-style: italic;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 32px;
+      }
+
+      .exam-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .subjects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="header-content">
+     <div class="logo">
+      <div class="logo-icon">
+       🎓
+      </div>
+      <div class="logo-text">
+       <h1 id="site-title">JKLU StudyHub</h1>
+       <p id="tagline">Past Papers, Smart Solutions &amp; AI Predictions</p>
+      </div>
+     </div>
+     <div class="header-actions"><button class="about-btn" onclick="openAboutModal()">About Us</button>
+     </div>
+    </div>
+   </div>
+  </header>
+  <main><!-- Home View -->
+   <div id="home-view">
+    <section class="hero">
+     <div class="container">
+      <h2 id="hero-title">Study Smart. Solve Fast. Predict Smarter.</h2>
+      <p class="hero-subtitle">Access comprehensive past papers, detailed solutions, and AI-powered predictions to excel in your JKLU exams.</p>
+      <div class="exam-buttons"><button class="exam-btn" onclick="filterByExam('midterm1')">Mid-Term 1</button> <button class="exam-btn" onclick="filterByExam('midterm2')">Mid-Term 2</button> <button class="exam-btn" onclick="filterByExam('endterm')">End-Term</button> <button class="exam-btn" onclick="filterByExam('quizzer')">Quizzer</button>
+      </div>
+      <div class="search-bar"><input type="text" placeholder="Search subject, paper, or topic..." id="search-input"> <span class="search-icon">🔍</span>
+      </div>
+     </div>
+    </section>
+    <section class="subjects-section">
+     <div class="container">
+      <h3 class="section-title">Browse Subjects</h3>
+      <div class="subjects-grid">
+       <div class="subject-card" onclick="openSubject('Mathematics')">
+        <div class="subject-icon">
+         <svg width="52" height="52" viewbox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#3b82f6" stroke="#1e40af" stroke-width="2" /> <path d="M16 20h20M16 26h20M16 32h20" stroke="white" stroke-width="2" stroke-linecap="round" /> <path d="M20 16v20M32 16v20" stroke="white" stroke-width="2" stroke-linecap="round" /> <text x="26" y="30" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
+           ∑
+          </text>
+         </svg>
+        </div>
+        <p class="subject-name">Mathematics</p>
+       </div>
+       <div class="subject-card" onclick="openSubject('EEE')">
+        <div class="subject-icon">
+         <svg width="52" height="52" viewbox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#f59e0b" stroke="#d97706" stroke-width="2" /> <path d="M18 16l8 12-6 8h4l8-12-6-8h-8z" fill="white" /> <circle cx="35" cy="20" r="3" fill="white" /> <circle cx="17" cy="32" r="3" fill="white" /> <path d="M20 20h12M20 32h12" stroke="white" stroke-width="1.5" />
+         </svg>
+        </div>
+        <p class="subject-name">EEE</p>
+       </div>
+       <div class="subject-card" onclick="openSubject('Python')">
+        <div class="subject-icon">
+         <svg width="52" height="52" viewbox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#10b981" stroke="#059669" stroke-width="2" /> <path d="M16 20c0-4 2-6 6-6h8c4 0 6 2 6 6v12c0 4-2 6-6 6h-8c-4 0-6-2-6-6V20z" fill="white" /> <circle cx="20" cy="18" r="2" fill="#10b981" /> <circle cx="32" cy="34" r="2" fill="#10b981" /> <path d="M18 24h16M18 28h16" stroke="#10b981" stroke-width="1.5" />
+         </svg>
+        </div>
+        <p class="subject-name">Python</p>
+       </div>
+       <div class="subject-card" onclick="openSubject('C Programming')">
+        <div class="subject-icon">
+         <svg width="52" height="52" viewbox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#6366f1" stroke="#4f46e5" stroke-width="2" /> <rect x="16" y="16" width="20" height="20" rx="2" fill="white" /> <path d="M20 20h12M20 24h8M20 28h12M20 32h6" stroke="#6366f1" stroke-width="1.5" /> <text x="26" y="30" text-anchor="middle" fill="#6366f1" font-size="14" font-weight="bold">
+           C
+          </text>
+         </svg>
+        </div>
+        <p class="subject-name">C Programming</p>
+       </div>
+       <div class="subject-card" onclick="openSubject('Communication Design')">
+        <div class="subject-icon">
+         <svg width="52" height="52" viewbox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#ec4899" stroke="#db2777" stroke-width="2" /> <rect x="16" y="18" width="20" height="16" rx="2" fill="white" /> <circle cx="21" cy="23" r="2" fill="#ec4899" /> <path d="M16 30l4-4 3 3 5-5 3 3v3H16v-0z" fill="#ec4899" /> <rect x="28" y="20" width="6" height="2" fill="#ec4899" /> <rect x="28" y="24" width="4" height="2" fill="#ec4899" />
+         </svg>
+        </div>
+        <p class="subject-name">Communication Design</p>
+       </div>
+       <div class="subject-card" onclick="openSubject('Physics')">
+        <div class="subject-icon">
+         <svg width="52" height="52" viewbox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#8b5cf6" stroke="#7c3aed" stroke-width="2" /> <circle cx="26" cy="26" r="8" fill="none" stroke="white" stroke-width="2" /> <circle cx="26" cy="26" r="2" fill="white" /> <path d="M26 14v4M26 34v4M38 26h-4M18 26h-4" stroke="white" stroke-width="2" /> <path d="M33.66 18.34l-2.83 2.83M21.17 30.83l-2.83 2.83M33.66 33.66l-2.83-2.83M21.17 21.17l-2.83-2.83" stroke="white" stroke-width="1.5" />
+         </svg>
+        </div>
+        <p class="subject-name">Physics</p>
+       </div>
+       <div class="subject-card" onclick="openSubject('EVS')">
+        <div class="subject-icon">
+         <svg width="52" height="52" viewbox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#059669" stroke="#047857" stroke-width="2" /> <circle cx="26" cy="26" r="12" fill="white" /> <path d="M26 16c-3 0-6 2-8 5 2 3 5 5 8 5s6-2 8-5c-2-3-5-5-8-5z" fill="#059669" /> <path d="M18 30c2 3 5 4 8 4s6-1 8-4" fill="#059669" /> <circle cx="22" cy="22" r="1" fill="white" /> <circle cx="30" cy="22" r="1" fill="white" /> <path d="M16 36c0-2 2-4 4-4h12c2 0 4 2 4 4" stroke="#059669" stroke-width="2" fill="none" />
+         </svg>
+        </div>
+        <p class="subject-name">EVS</p>
+       </div>
+       <div class="subject-card" onclick="openSubject('Politics')">
+        <div class="subject-icon">
+         <svg width="52" height="52" viewbox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="26" cy="26" r="24" fill="#dc2626" stroke="#b91c1c" stroke-width="2" /> <rect x="16" y="32" width="20" height="4" fill="white" /> <rect x="20" y="20" width="3" height="12" fill="white" /> <rect x="24.5" y="16" width="3" height="16" fill="white" /> <rect x="29" y="18" width="3" height="14" fill="white" /> <rect x="18" y="14" width="16" height="2" fill="white" /> <path d="M22 14v-2M26 14v-4M30 14v-2" stroke="white" stroke-width="1.5" />
+         </svg>
+        </div>
+        <p class="subject-name">Politics</p>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- Subject Dashboard -->
+   <div id="dashboard-view" class="dashboard">
+    <div class="container">
+     <div class="dashboard-header"><button class="back-btn" onclick="goBack()">← Back to Subjects</button>
+      <div class="filters">
+       <div class="filter-group"><button class="filter-btn active" data-filter="year" data-value="2025" onclick="applyFilter(this, 'year', '2025')">2025</button> <button class="filter-btn" data-filter="year" data-value="2024" onclick="applyFilter(this, 'year', '2024')">2024</button> <button class="filter-btn" data-filter="year" data-value="2023" onclick="applyFilter(this, 'year', '2023')">2023</button>
+       </div>
+       <div class="filter-group"><button class="filter-btn active" data-filter="exam" data-value="midterm1" onclick="applyFilter(this, 'exam', 'midterm1')">Mid-Term 1</button> <button class="filter-btn" data-filter="exam" data-value="midterm2" onclick="applyFilter(this, 'exam', 'midterm2')">Mid-Term 2</button> <button class="filter-btn" data-filter="exam" data-value="endterm" onclick="applyFilter(this, 'exam', 'endterm')">End-Term</button> <button class="filter-btn" data-filter="exam" data-value="quizzer" onclick="applyFilter(this, 'exam', 'quizzer')">Quizzer</button>
+       </div>
+      </div>
+     </div>
+     <h3 class="section-title" id="subject-title">Mathematics</h3>
+     <div class="questions-list" id="questions-list"></div>
+    </div>
+   </div>
+  </main><!-- About Us Modal -->
+  <div id="about-modal" class="modal-overlay">
+   <div class="modal-content">
+    <div class="modal-header">
+     <h2 class="modal-title">About JKLU StudyHub</h2><button class="close-btn" onclick="closeAboutModal()">×</button>
+    </div>
+    <div class="modal-body">
+     <div class="about-section">
+      <p>JKLU StudyHub is a student-built educational platform that helps learners prepare smarter using real university papers, step-by-step solutions, and video explanations.</p>
+     </div>
+     <div class="about-section">
+      <h3>Our Story</h3>
+      <p>It began with a simple idea — to make every JKLU student's exam preparation faster and better organized.</p>
+      <p>Built and maintained by <span id="about-founder">Shubh Dixit</span> and <span id="about-cofounder">Kartik Saini</span>, the platform aims to bridge the gap between past knowledge and future preparation.</p>
+      <div class="founders-grid">
+       <div class="founder-card">
+        <div style="width:300px; height:300px; border:2px solid black; display:flex; justify-content:center; align-items:center; overflow:hidden;">
+        <img src="6070862352673868957.jpg" alt="Example" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h4 class="founder-name" id="modal-founder-name">Shubh Dixit</h4>
+        <p class="founder-role">Founder &amp; Developer</p>
+       </div>
+       <div class="founder-card">
+        <div style="width:300px; height:300px; border:2px solid black; display:flex; justify-content:center; align-items:center; overflow:hidden;">
+        <img src="6070862352673868956.jpg" alt="Example" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h4 class="founder-name" id="modal-cofounder-name">Kartik Saini</h4>
+        <p class="founder-role">Co-Founder &amp; Designer</p>
+       </div>
+      </div>
+     </div>
+     <div class="about-section">
+      <h3>Our Features</h3>
+      <div class="features-grid">
+       <div class="feature-item"><span class="feature-icon">📝</span>
+        <p class="feature-text">Every question includes a detailed written and video solution</p>
+       </div>
+       <div class="feature-item"><span class="feature-icon">🔍</span>
+        <p class="feature-text">Easy filtering by subject, year, and exam type</p>
+       </div>
+       <div class="feature-item"><span class="feature-icon">🤖</span>
+        <p class="feature-text">Smart ML-based predictions</p>
+       </div>
+       <div class="feature-item"><span class="feature-icon">🎨</span>
+        <p class="feature-text">Clean and distraction-free design</p>
+       </div>
+      </div>
+     </div>
+     <div class="about-section">
+      <h3>Future of JKLU StudyHub</h3>
+      <div class="vision-quote">
+       <p>✨ "From students — for the next generation of learners."</p>
+      </div>
+      <p><strong>We're working on:</strong></p>
+      <ul class="future-list">
+       <li>AI-powered note summaries for each subject</li>
+       <li>Personalized topic suggestions based on your performance</li>
+       <li>Faculty-verified papers and student-uploaded notes</li>
+       <li>Discussion forums for peer learning</li>
+       <li>Mobile app version for on-the-go study</li>
+      </ul>
+      <p>The vision is to make JKLU StudyHub the most advanced, data-driven student study portal in India.</p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <footer>
+   <div class="container">
+    <p><strong>JKLU StudyHub</strong> — Empowering students with smart learning tools</p>
+    <p>Made with 🖤 by <span id="footer-founder">Shubh Dixit</span> &amp; <span id="footer-cofounder">Kartik Saini</span></p>
+   </div>
+  </footer>
+  <script>
+    const defaultConfig = {
+      site_title: "JKLU StudyHub",
+      tagline: "Past Papers, Smart Solutions & AI Predictions",
+      hero_title: "Study Smart. Solve Fast. Predict Smarter.",
+      founder_name: "Shubh Dixit",
+      cofounder_name: "Kartik Saini",
+      founder_tagline: "Created by JKLU students to make learning smarter, organized, and predictive.",
+      background_color: "#ffffff",
+      text_color: "#000000",
+      accent_color: "#000000",
+      surface_color: "#ffffff",
+      secondary_color: "#666666"
+    };
+
+    let config = { ...defaultConfig };
+    let currentSubject = '';
+    let currentFilters = { year: '2025', exam: 'midterm1' };
+
+    const sampleQuestions = {
+      'Mathematics': [
+        {
+          id: 1,
+          question: 'Explain the concept of derivatives and their applications in real-world problems.',
+          answer: 'A derivative represents the rate of change of a function with respect to a variable. In calculus, if we have a function f(x), its derivative f\'(x) gives us the instantaneous rate of change at any point. Applications include: calculating velocity and acceleration in physics, finding maximum and minimum values in optimization problems, determining marginal cost and revenue in economics, and analyzing growth rates in biology.',
+          year: '2025',
+          exam: 'midterm1',
+          videoId: 'math_derivatives_2025'
+        },
+        {
+          id: 2,
+          question: 'Solve the integral of x² + 3x + 2 with respect to x.',
+          answer: 'To solve ∫(x² + 3x + 2)dx, we integrate each term separately: ∫x²dx = x³/3, ∫3xdx = 3x²/2, ∫2dx = 2x. Therefore, the solution is: x³/3 + 3x²/2 + 2x + C, where C is the constant of integration.',
+          year: '2024',
+          exam: 'endterm',
+          videoId: 'math_integration_2024'
+        },
+        {
+          id: 3,
+          question: 'Find the limit of (sin x)/x as x approaches 0.',
+          answer: 'This is a standard limit in calculus. As x approaches 0, both sin x and x approach 0, creating an indeterminate form 0/0. Using L\'Hôpital\'s rule or the squeeze theorem, we can show that lim(x→0) (sin x)/x = 1. This limit is fundamental in proving the derivative of sin x.',
+          year: '2025',
+          exam: 'midterm2',
+          videoId: 'math_limits_2025'
+        },
+        {
+          id: 4,
+          question: 'Solve the differential equation dy/dx = 2x + 3.',
+          answer: 'This is a simple first-order differential equation. Integrating both sides: ∫dy = ∫(2x + 3)dx. This gives us y = x² + 3x + C, where C is the constant of integration determined by initial conditions.',
+          year: '2023',
+          exam: 'endterm',
+          videoId: 'math_differential_2023'
+        }
+      ],
+      'EEE': [
+        {
+          id: 1,
+          question: 'Explain Ohm\'s Law with a circuit diagram and practical applications.',
+          answer: 'Ohm\'s Law states that the current (I) flowing through a conductor is directly proportional to the voltage (V) across it and inversely proportional to its resistance (R). The formula is V = IR. In a simple circuit with a battery, resistor, and connecting wires, if we apply 12V across a 4Ω resistor, the current would be I = V/R = 12/4 = 3A. This law is fundamental in designing electrical circuits, calculating power consumption, and troubleshooting electrical systems.',
+          year: '2025',
+          exam: 'midterm1',
+          videoId: 'eee_ohms_law_2025'
+        },
+        {
+          id: 2,
+          question: 'Explain the working principle of a transformer.',
+          answer: 'A transformer works on the principle of electromagnetic induction. It consists of two coils (primary and secondary) wound around a common iron core. When AC voltage is applied to the primary coil, it creates a changing magnetic flux in the core, which induces voltage in the secondary coil. The voltage ratio is determined by the turns ratio: Vs/Vp = Ns/Np. Transformers are used for stepping up or stepping down AC voltages in power transmission systems.',
+          year: '2025',
+          exam: 'endterm',
+          videoId: 'eee_transformer_2025'
+        },
+        {
+          id: 3,
+          question: 'Derive the expression for power in AC circuits.',
+          answer: 'In AC circuits, instantaneous power p(t) = v(t) × i(t). For sinusoidal voltage v(t) = Vm sin(ωt) and current i(t) = Im sin(ωt + φ), the average power P = (Vm × Im)/2 × cos(φ) = Vrms × Irms × cos(φ), where φ is the phase difference and cos(φ) is the power factor. This shows that power depends on both magnitude and phase relationship.',
+          year: '2024',
+          exam: 'midterm2',
+          videoId: 'eee_ac_power_2024'
+        }
+      ],
+      'Python': [
+        {
+          id: 1,
+          question: 'Write a Python function to reverse a string without using built-in reverse methods.',
+          answer: 'Here is a function that reverses a string using slicing:\n\ndef reverse_string(text):\n    return text[::-1]\n\nAlternatively, using a loop:\n\ndef reverse_string(text):\n    reversed_text = ""\n    for char in text:\n        reversed_text = char + reversed_text\n    return reversed_text\n\nExample usage: reverse_string("hello") returns "olleh"',
+          year: '2025',
+          exam: 'midterm1',
+          videoId: 'python_string_reverse_2025'
+        },
+        {
+          id: 2,
+          question: 'Explain list comprehensions with examples.',
+          answer: 'List comprehensions provide a concise way to create lists. Syntax: [expression for item in iterable if condition]\n\nExamples:\n1. squares = [x**2 for x in range(10)] # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]\n2. evens = [x for x in range(20) if x % 2 == 0] # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]\n3. words = ["hello", "world"]; lengths = [len(word) for word in words] # [5, 5]',
+          year: '2025',
+          exam: 'midterm2',
+          videoId: 'python_list_comprehension_2025'
+        },
+        {
+          id: 3,
+          question: 'Write a Python program to find the factorial of a number using recursion.',
+          answer: 'def factorial(n):\n    # Base case\n    if n == 0 or n == 1:\n        return 1\n    # Recursive case\n    else:\n        return n * factorial(n - 1)\n\n# Example usage\nprint(factorial(5))  # Output: 120\nprint(factorial(0))  # Output: 1\n\nTime complexity: O(n), Space complexity: O(n) due to recursive call stack.',
+          year: '2024',
+          exam: 'endterm',
+          videoId: 'python_recursion_factorial_2024'
+        },
+        {
+          id: 4,
+          question: 'Explain the difference between lists and tuples in Python.',
+          answer: 'Lists vs Tuples:\n\n1. Mutability: Lists are mutable (can be changed), tuples are immutable (cannot be changed)\n2. Syntax: Lists use [], tuples use ()\n3. Performance: Tuples are faster for iteration\n4. Use cases: Lists for data that changes, tuples for fixed data\n\nExample:\nmy_list = [1, 2, 3]; my_list[0] = 10  # Valid\nmy_tuple = (1, 2, 3); my_tuple[0] = 10  # Error!',
+          year: '2023',
+          exam: 'quizzer',
+          videoId: 'python_lists_tuples_2023'
+        }
+      ],
+      'C Programming': [
+        {
+          id: 1,
+          question: 'Explain the difference between call by value and call by reference in C.',
+          answer: 'Call by Value: A copy of the actual parameter is passed to the function. Changes made inside the function do not affect the original variable. Example: void func(int x) { x = 10; }\n\nCall by Reference: The address of the actual parameter is passed using pointers. Changes made inside the function affect the original variable. Example: void func(int *x) { *x = 10; }\n\nCall by reference is useful when you need to modify the original data or when passing large data structures to avoid copying overhead.',
+          year: '2025',
+          exam: 'midterm2',
+          videoId: 'c_call_by_value_reference_2025'
+        },
+        {
+          id: 2,
+          question: 'Write a C program to implement bubble sort algorithm.',
+          answer: '#include <stdio.h>\n\nvoid bubbleSort(int arr[], int n) {\n    for (int i = 0; i < n-1; i++) {\n        for (int j = 0; j < n-i-1; j++) {\n            if (arr[j] > arr[j+1]) {\n                // Swap elements\n                int temp = arr[j];\n                arr[j] = arr[j+1];\n                arr[j+1] = temp;\n            }\n        }\n    }\n}\n\nTime Complexity: O(n²), Space Complexity: O(1)',
+          year: '2025',
+          exam: 'endterm',
+          videoId: 'c_bubble_sort_2025'
+        },
+        {
+          id: 3,
+          question: 'Explain dynamic memory allocation in C with malloc() and free().',
+          answer: 'Dynamic memory allocation allows programs to request memory during runtime. Key functions:\n\n1. malloc(size): Allocates memory block of specified size\n2. free(ptr): Deallocates previously allocated memory\n3. calloc(num, size): Allocates and initializes to zero\n4. realloc(ptr, size): Resizes allocated memory\n\nExample:\nint *ptr = (int*)malloc(5 * sizeof(int));\nif (ptr != NULL) {\n    // Use the memory\n    free(ptr);  // Always free allocated memory\n}',
+          year: '2024',
+          exam: 'midterm1',
+          videoId: 'c_dynamic_memory_2024'
+        }
+      ],
+      'Communication Design': [
+        {
+          id: 1,
+          question: 'Discuss the principles of visual hierarchy in design.',
+          answer: 'Visual hierarchy is the arrangement of design elements in order of importance. Key principles include: Size (larger elements attract more attention), Color (bright and contrasting colors stand out), Contrast (differences in tone, color, or size create emphasis), Alignment (proper alignment guides the eye), Whitespace (negative space helps focus attention), and Typography (font size, weight, and style establish hierarchy). Effective visual hierarchy guides viewers through content in a logical flow, ensuring important information is noticed first.',
+          year: '2025',
+          exam: 'midterm1',
+          videoId: 'design_visual_hierarchy_2025'
+        },
+        {
+          id: 2,
+          question: 'Explain the color theory and its application in design.',
+          answer: 'Color theory is the science of how colors interact and affect human perception. Key concepts:\n\n1. Color Wheel: Primary (red, blue, yellow), Secondary (green, orange, purple), Tertiary colors\n2. Color Harmony: Complementary, Analogous, Triadic, Split-complementary schemes\n3. Color Psychology: Red (energy, passion), Blue (trust, calm), Green (nature, growth)\n4. Applications: Brand identity, user interface design, marketing materials\n\nEffective color use enhances readability, creates mood, and guides user attention.',
+          year: '2025',
+          exam: 'midterm2',
+          videoId: 'design_color_theory_2025'
+        },
+        {
+          id: 3,
+          question: 'What are the key principles of typography in design?',
+          answer: 'Typography principles ensure effective communication through text:\n\n1. Readability: Clear, legible fonts appropriate for medium and audience\n2. Hierarchy: Different font sizes, weights, and styles to organize information\n3. Contrast: Sufficient contrast between text and background\n4. Alignment: Consistent text alignment creates visual order\n5. Spacing: Proper line height, letter spacing, and margins\n6. Font Pairing: Combining fonts that complement each other\n\nGood typography enhances user experience and reinforces brand identity.',
+          year: '2024',
+          exam: 'endterm',
+          videoId: 'design_typography_2024'
+        }
+      ],
+      'Physics': [
+        {
+          id: 1,
+          question: 'Derive the equations of motion for uniformly accelerated motion.',
+          answer: 'The three equations of motion are:\n\n1) v = u + at (velocity-time relation)\nDerived from: acceleration a = (v-u)/t\n\n2) s = ut + (1/2)at² (position-time relation)\nDerived by integrating velocity over time\n\n3) v² = u² + 2as (velocity-position relation)\nDerived by eliminating time from equations 1 and 2\n\nWhere: u = initial velocity, v = final velocity, a = acceleration, t = time, s = displacement. These equations are fundamental in kinematics and apply when acceleration is constant.',
+          year: '2025',
+          exam: 'endterm',
+          videoId: 'physics_motion_equations_2025'
+        },
+        {
+          id: 2,
+          question: 'Explain Newton\'s laws of motion with examples.',
+          answer: 'Newton\'s Three Laws:\n\n1st Law (Inertia): An object at rest stays at rest, and an object in motion stays in motion unless acted upon by an external force. Example: A book on a table remains stationary until pushed.\n\n2nd Law (F = ma): The acceleration of an object is directly proportional to the net force and inversely proportional to its mass. Example: Pushing a car requires more force than pushing a bicycle.\n\n3rd Law (Action-Reaction): For every action, there is an equal and opposite reaction. Example: Walking involves pushing backward on the ground, which pushes forward on you.',
+          year: '2025',
+          exam: 'midterm1',
+          videoId: 'physics_newton_laws_2025'
+        },
+        {
+          id: 3,
+          question: 'Derive the formula for gravitational potential energy.',
+          answer: 'Gravitational potential energy is the energy possessed by an object due to its position in a gravitational field.\n\nDerivation:\nWork done against gravity = Force × Distance\nW = mgh (for small heights near Earth\'s surface)\n\nFor large distances: U = -GMm/r\nWhere G = gravitational constant, M = mass of Earth, m = object mass, r = distance from center\n\nThe negative sign indicates that gravitational force is attractive. At infinity, U = 0 (reference point).',
+          year: '2024',
+          exam: 'midterm2',
+          videoId: 'physics_gravitational_energy_2024'
+        }
+      ],
+      'EVS': [
+        {
+          id: 1,
+          question: 'Explain the concept of sustainable development and its importance.',
+          answer: 'Sustainable development is development that meets the needs of the present without compromising the ability of future generations to meet their own needs. It balances three pillars: Economic growth (prosperity and job creation), Social inclusion (poverty reduction and social equity), and Environmental protection (conservation of natural resources). Importance includes: preserving biodiversity, reducing pollution, ensuring resource availability for future generations, addressing climate change, and promoting equitable distribution of resources. Examples include renewable energy adoption, sustainable agriculture, waste reduction, and green building practices.',
+          year: '2025',
+          exam: 'midterm1',
+          videoId: 'evs_sustainable_development_2025'
+        },
+        {
+          id: 2,
+          question: 'Discuss the causes and effects of climate change.',
+          answer: 'Climate Change Causes:\n1. Greenhouse gas emissions (CO₂, CH₄, N₂O) from fossil fuels\n2. Deforestation reducing carbon absorption\n3. Industrial processes and agriculture\n4. Transportation and energy production\n\nEffects:\n1. Rising global temperatures and sea levels\n2. Extreme weather events (hurricanes, droughts, floods)\n3. Ecosystem disruption and species extinction\n4. Agricultural impacts and food security issues\n5. Human health risks and displacement\n\nMitigation requires global cooperation and sustainable practices.',
+          year: '2025',
+          exam: 'endterm',
+          videoId: 'evs_climate_change_2025'
+        },
+        {
+          id: 3,
+          question: 'Explain the water cycle and its importance in the ecosystem.',
+          answer: 'The water cycle is the continuous movement of water through Earth\'s systems:\n\n1. Evaporation: Solar energy converts surface water to vapor\n2. Transpiration: Plants release water vapor through leaves\n3. Condensation: Water vapor forms clouds in the atmosphere\n4. Precipitation: Water falls as rain, snow, or hail\n5. Collection: Water flows into rivers, lakes, and groundwater\n\nImportance: Distributes fresh water globally, regulates temperature, supports all life forms, maintains ecosystem balance, and enables weather patterns.',
+          year: '2024',
+          exam: 'quizzer',
+          videoId: 'evs_water_cycle_2024'
+        }
+      ],
+      'Politics': [
+        {
+          id: 1,
+          question: 'Discuss the key features of the Indian Constitution.',
+          answer: 'The Indian Constitution, adopted on January 26, 1950, is the longest written constitution in the world. Key features include: 1) Federal structure with unitary features, 2) Parliamentary form of government, 3) Fundamental Rights (Articles 12-35) guaranteeing civil liberties, 4) Directive Principles of State Policy guiding governance, 5) Independent judiciary with power of judicial review, 6) Secular state with no official religion, 7) Universal adult suffrage, 8) Single citizenship, 9) Emergency provisions, and 10) Amendment procedure balancing rigidity and flexibility. These features ensure democracy, justice, equality, and liberty for all citizens.',
+          year: '2025',
+          exam: 'midterm2',
+          videoId: 'politics_indian_constitution_2025'
+        },
+        {
+          id: 2,
+          question: 'Explain the concept of separation of powers in democratic governments.',
+          answer: 'Separation of powers divides government authority among three branches to prevent concentration of power:\n\n1. Legislative Branch: Makes laws (Parliament/Congress)\n2. Executive Branch: Implements and enforces laws (President/Prime Minister and cabinet)\n3. Judicial Branch: Interprets laws and ensures justice (Courts)\n\nChecks and Balances: Each branch can limit the others\' power. Examples: Legislative can impeach executives, judiciary can declare laws unconstitutional, executive can veto legislation. This system protects democracy and individual rights.',
+          year: '2025',
+          exam: 'endterm',
+          videoId: 'politics_separation_powers_2025'
+        },
+        {
+          id: 3,
+          question: 'Analyze the role of political parties in a democracy.',
+          answer: 'Political parties are essential for democratic governance:\n\nFunctions:\n1. Representation: Voice diverse interests and ideologies\n2. Governance: Form governments and implement policies\n3. Opposition: Provide checks on ruling party\n4. Political Education: Inform citizens about issues\n5. Candidate Selection: Choose representatives for elections\n\nBenefits: Organize political competition, simplify voter choices, ensure accountability\nChallenges: Polarization, corruption, elite capture\n\nHealthy party systems require transparency, internal democracy, and ethical leadership.',
+          year: '2024',
+          exam: 'midterm1',
+          videoId: 'politics_political_parties_2024'
+        }
+      ]
+    };
+
+    function openSubject(subject) {
+      currentSubject = subject;
+      document.getElementById('home-view').style.display = 'none';
+      document.getElementById('dashboard-view').classList.add('active');
+      document.getElementById('subject-title').textContent = subject;
+      renderQuestions();
+    }
+
+    function goBack() {
+      document.getElementById('home-view').style.display = 'block';
+      document.getElementById('dashboard-view').classList.remove('active');
+      currentSubject = '';
+    }
+
+    function applyFilter(button, filterType, value) {
+      const buttons = button.parentElement.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      currentFilters[filterType] = value;
+      renderQuestions();
+    }
+
+    function filterByExam(examType) {
+      currentFilters.exam = examType;
+      if (currentSubject) {
+        const examButtons = document.querySelectorAll('[data-filter="exam"]');
+        examButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.value === examType);
+        });
+        renderQuestions();
+      }
+    }
+
+    function renderQuestions() {
+      const questionsList = document.getElementById('questions-list');
+      questionsList.innerHTML = '';
+      
+      const questions = sampleQuestions[currentSubject] || [];
+      const filtered = questions.filter(q => 
+        q.year === currentFilters.year && q.exam === currentFilters.exam
+      );
+
+      if (filtered.length === 0) {
+        questionsList.innerHTML = '<p style="text-align: center; color: #666666; padding: 40px;">No questions available for this filter combination.</p>';
+        return;
+      }
+
+      filtered.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.innerHTML = `
+          <p class="question-header">Q${q.id}. ${q.question}</p>
+          <div class="question-details" id="details-${q.id}">
+            <p class="question-text">${q.question}</p>
+            <div class="answer-section">
+              <h4>Answer:</h4>
+              <p class="answer-text">${q.answer}</p>
+            </div>
+            <div class="video-section">
+              <h4>🎬 Watch Video Solution</h4>
+              <div class="video-container">
+                <div class="video-placeholder">
+                  <div class="play-icon">▶️</div>
+                  <div class="video-title">Video Solution Available</div>
+                  <div class="video-duration">Duration: 8-12 minutes</div>
+                </div>
+              </div>
+              <div class="video-info">
+                <div class="video-id">Video ID: ${q.videoId}</div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        card.addEventListener('click', (e) => {
+          if (!e.target.closest('.question-details')) {
+            const details = card.querySelector('.question-details');
+            details.classList.toggle('active');
+          }
+        });
+        
+        questionsList.appendChild(card);
+      });
+    }
+
+    function openAboutModal() {
+      document.getElementById('about-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAboutModal() {
+      document.getElementById('about-modal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('about-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('about-modal')) {
+        closeAboutModal();
+      }
+    });
+
+    async function onConfigChange(newConfig) {
+      document.getElementById('site-title').textContent = newConfig.site_title || defaultConfig.site_title;
+      document.getElementById('tagline').textContent = newConfig.tagline || defaultConfig.tagline;
+      document.getElementById('hero-title').textContent = newConfig.hero_title || defaultConfig.hero_title;
+      document.getElementById('about-founder').textContent = newConfig.founder_name || defaultConfig.founder_name;
+      document.getElementById('about-cofounder').textContent = newConfig.cofounder_name || defaultConfig.cofounder_name;
+      document.getElementById('modal-founder-name').textContent = newConfig.founder_name || defaultConfig.founder_name;
+      document.getElementById('modal-cofounder-name').textContent = newConfig.cofounder_name || defaultConfig.cofounder_name;
+      document.getElementById('footer-founder').textContent = newConfig.founder_name || defaultConfig.founder_name;
+      document.getElementById('footer-cofounder').textContent = newConfig.cofounder_name || defaultConfig.cofounder_name;
+
+      document.body.style.background = newConfig.background_color || defaultConfig.background_color;
+      document.body.style.color = newConfig.text_color || defaultConfig.text_color;
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (value) => {
+                config.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["site_title", config.site_title || defaultConfig.site_title],
+          ["tagline", config.tagline || defaultConfig.tagline],
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["founder_name", config.founder_name || defaultConfig.founder_name],
+          ["cofounder_name", config.cofounder_name || defaultConfig.cofounder_name],
+          ["founder_tagline", config.founder_tagline || defaultConfig.founder_tagline]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9985e56b3574c51e',t:'MTc2MjExMDI1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
